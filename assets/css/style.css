@@ -135,9 +135,17 @@ p { text-wrap: pretty; }
 }
 .marca__nome { font-family: var(--font-display); font-weight: 300; font-variation-settings: "opsz" 144; font-size: 1.5rem; letter-spacing: 0.01em; }
 .marca__profissao { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; margin-block-start: var(--space-1); }
-.cabecalho__nav, .cabecalho__cta { display: none; }
+.cabecalho__nav { display: none; }
+/* 14/10: no celular, botão do WhatsApp no lugar do menu de três traços (regra do Armin para todos os sites) */
+.cabecalho__cta {
+  flex-shrink: 0; min-height: var(--toque-min); padding: var(--space-2) var(--space-4);
+  font-size: 0.875rem; letter-spacing: 0.02em;
+}
+@media (max-width: 899px) { .cabecalho__cta-extra { display: none; } }
+@media (max-width: 339px) { .cabecalho__cta .icone { display: none; } }
+@media (min-width: 900px) { .cabecalho__cta { min-height: 56px; padding: var(--space-4) var(--space-6); font-size: 1rem; letter-spacing: 0.04em; } }
 .cabecalho__menu {
-  display: grid; place-items: center; flex-shrink: 0;
+  display: none; place-items: center; flex-shrink: 0;
   width: 48px; height: 48px; padding: 0;
   border: 0; background: transparent; color: var(--text);
 }
@@ -192,41 +200,27 @@ p { text-wrap: pretty; }
 .menu-celular__pe { display: grid; justify-items: center; gap: var(--space-4); text-align: center; }
 @media (min-width: 900px) { .menu-celular { display: none; } }
 
-/* 1. Herói */
-.heroi { padding-top: var(--header-h); }
-.heroi__foto { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; margin-block-start: var(--space-3); }
-.heroi__foto img { width: 100%; height: clamp(128px, 19svh, 220px); object-fit: cover; object-position: 50% 30%; }
-.heroi__texto {
-  width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto;
-  padding-block: var(--space-4) var(--space-8);
-}
-.heroi h1 { margin-block-end: var(--space-3); }
-.heroi .apoio { margin-block-end: var(--space-4); font-size: 1rem; line-height: 1.7; }
-.heroi .identificacao { margin-block-start: var(--space-3); }
-@media (min-width: 600px) and (max-width: 899px) {
-  .heroi__foto, .heroi__texto { width: min(100% - 2 * var(--gutter), var(--mobile-eixo)); }
-  .heroi__foto img { height: 240px; object-position: 50% 45%; }
-}
+/* 1. Herói — posicionamento do herói da Marilúcia Valério (14/10, Armin):
+   celular: rótulo + título no alto, foto, texto, botão, CRP. Computador: texto à esquerda no container, foto à direita. */
+.heroi { padding-top: calc(var(--header-h) + var(--space-6)); padding-bottom: var(--space-8); }
+.heroi__grade { display: grid; gap: var(--space-6); }
+.heroi h1 { margin-block-start: var(--space-3); }
+.heroi__foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 28%; border-radius: var(--raio); }
+.heroi .apoio { margin-block-end: var(--space-5); font-size: 1rem; line-height: 1.7; }
+.heroi .identificacao { margin-block-start: var(--space-4); }
 @media (min-width: 900px) {
-  .heroi {
-    display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    min-height: min(100svh, 940px);
+  .heroi { padding-top: calc(var(--header-h) + var(--space-9)); padding-bottom: var(--space-9); }
+  .heroi__grade {
+    grid-template-columns: 7fr 5fr; grid-template-areas: "topo foto" "base foto";
+    gap: var(--space-5) var(--space-8);
   }
-  .heroi__foto { width: auto; margin: 0; }
-  .heroi__foto picture { display: block; height: 100%; }
-  .heroi__foto img { height: 100%; min-height: 640px; object-position: 50% 22%; }
-  .heroi__texto {
-    width: auto; margin: 0; align-self: center;
-    padding: var(--space-9) var(--space-7);
-    max-width: 44rem;
-  }
-  .heroi h1 { margin-block-end: var(--space-4); }
+  .heroi__topo { grid-area: topo; align-self: end; }
+  .heroi__base { grid-area: base; align-self: start; max-width: 594px; }
+  .heroi__foto { grid-area: foto; align-self: center; }
+  .heroi__foto picture { display: block; }
+  .heroi__foto img { aspect-ratio: 5 / 6; object-position: 50% 22%; }
+  .heroi h1 { margin-block-start: var(--space-4); }
   .heroi .apoio { margin-block-end: var(--space-6); font-size: var(--apoio); line-height: 1.75; }
-  .heroi .identificacao { margin-block-start: var(--space-4); }
-}
-@media (min-width: 1200px) {
-  .heroi { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); }
-  .heroi__texto { padding-inline: var(--space-9); }
 }
 
 /* Seções: padrão e junções de mesmo fundo (lição Ana Carolina) */
@@ -507,7 +501,6 @@ p { text-wrap: pretty; }
 
 /* Ajustes de celular da rodada 1 (junções de mesmo fundo, passos, botão fixo no eixo do tablet) */
 @media (max-width: 899px) {
-  .heroi__texto { padding-block-end: var(--space-6); }
   .empatia { padding-top: var(--space-6); }
   .passos li { grid-template-columns: var(--space-6) 1fr; }
 }
