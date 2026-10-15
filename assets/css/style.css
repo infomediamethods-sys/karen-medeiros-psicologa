@@ -222,7 +222,7 @@ p { text-wrap: pretty; }
 .heroi__base { margin-block-start: var(--space-5); }
 .heroi .apoio { margin-block-end: var(--space-5); font-size: 1rem; line-height: 1.7; }
 .heroi .link-seta { display: none; }
-.heroi__id { display: none; } /* celular: sem a linha nome + CRP no herói (Armin, 15/10); no computador ela fica vertical ao lado da foto */
+.heroi__id { display: none; } /* 15/10 (Armin): sem a linha nome + CRP no herói, em nenhuma largura; nome + CRP seguem no Sobre, rodapé e JSON-LD */
 .heroi__fecho { margin-block-start: var(--space-8); }
 .heroi__fecho .divisoria { padding-block: 0; gap: var(--space-4); }
 .heroi__fecho .divisoria__fio { min-width: var(--space-6); }
@@ -254,9 +254,9 @@ p { text-wrap: pretty; }
   /* CRP vertical na faixa de areia à esquerda do retrato (nome completo + CRP continuam no herói) */
   .heroi__id {
     grid-area: foto; align-self: stretch; justify-self: start; z-index: 1;
-    display: grid;
+    display: none;
     width: var(--space-8); margin: 0 0 0 calc(-1 * var(--space-8));
-    display: grid; place-items: center;
+    place-items: center;
     writing-mode: vertical-rl; transform: rotate(180deg);
     font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.16em; white-space: nowrap; color: var(--accent-texto);
   }
