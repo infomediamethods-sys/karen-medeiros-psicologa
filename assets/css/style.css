@@ -5,13 +5,19 @@
   --areia: #DDD7CF;
   --cartao: #E4DFD8;
   --carvao: #262720;
-  --accent: #745E34;
-  --accent-texto: #5E4B28;
+  /* 15/10 (Armin): três dourados no lugar do bronze único. --ouro é decorativo (fios, bordas, ícones; sem exigência AA);
+     --ouro-titulo para títulos ≥24px (3:1 no linho 4,0 e na areia 3,3); --ouro-texto para texto pequeno (4,5:1: linho 5,9, areia 4,9). */
+  --ouro: #C9A24A;
+  --ouro-titulo: #8F6E1F;
+  --ouro-texto: #6F5614;
+  --accent: var(--ouro);
+  --accent-texto: var(--ouro-texto);
   --text: #1A1A17;
   --text-suave: #4A4A42;
   --text-claro: #EEEBE7;
   --text-claro-suave: #BDB8AE;
   --fio-claro: rgba(238, 235, 231, 0.25);
+  --fio-ouro: rgba(201, 162, 74, 0.55); /* fio dourado sobre carvão */
 
   --surface-1: var(--linho);
   --surface-2: var(--areia);
@@ -53,8 +59,8 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 h1 { font-size: var(--h1); line-height: 1.18; }
-h2 { font-size: var(--h2); line-height: 1.25; color: var(--accent); }
-h3, .h3 { font-size: var(--h3); line-height: 1.3; color: var(--accent); }
+h2 { font-size: var(--h2); line-height: 1.25; color: var(--ouro-titulo); }
+h3, .h3 { font-size: var(--h3); line-height: 1.3; color: var(--ouro-titulo); }
 h1 em, h2 em, h3 em, .frase__texto em { font-style: italic; white-space: nowrap; }
 strong { font-weight: 600; }
 p { text-wrap: pretty; }
@@ -88,9 +94,9 @@ p { text-wrap: pretty; }
   text-decoration: none; white-space: nowrap;
   transition: background-color 0.15s linear, color 0.15s linear, border-color 0.15s linear;
 }
-.botao:hover, .botao:focus-visible { background: var(--accent); color: var(--linho); }
-.botao--claro { border-color: var(--text-claro); color: var(--text-claro); }
-.botao--claro:hover, .botao--claro:focus-visible { background: var(--linho); color: var(--carvao); }
+.botao:hover, .botao:focus-visible { background: var(--ouro); color: var(--carvao); }
+.botao--claro { border-color: var(--ouro); color: var(--text-claro); }
+.botao--claro:hover, .botao--claro:focus-visible { background: var(--ouro); color: var(--carvao); }
 @media (max-width: 399px) {
   .botao { padding-inline: var(--space-5); white-space: normal; text-align: center; }
 }
@@ -134,7 +140,7 @@ p { text-wrap: pretty; }
   text-decoration: none; color: var(--text); line-height: 1.1;
 }
 .marca__nome { font-family: var(--font-display); font-weight: 300; font-variation-settings: "opsz" 144; font-size: 1.5rem; letter-spacing: 0.01em; }
-.marca__profissao { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; margin-block-start: var(--space-1); }
+.marca__profissao { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; margin-block-start: var(--space-1); color: var(--ouro-texto); }
 .cabecalho__nav { display: none; }
 /* 14/10: no celular, botão do WhatsApp no lugar do menu de três traços (regra do Armin para todos os sites) */
 .cabecalho__cta {
@@ -298,7 +304,7 @@ p { text-wrap: pretty; }
   font-size: var(--frase); line-height: 1.25; text-align: center; text-wrap: balance;
   max-width: 18em; margin-inline: auto; color: var(--text);
 }
-.frase__texto em { color: var(--accent); }
+.frase__texto em { color: var(--ouro-titulo); }
 
 /* 4. Abordagem */
 .abordagem h2 { margin-block-end: var(--space-5); }
@@ -318,18 +324,18 @@ p { text-wrap: pretty; }
 
 /* 5. Temas (carvão) */
 .temas { background: var(--carvao); color: var(--text-claro); }
-.temas .rotulo { color: var(--text-claro); }
+.temas .rotulo { color: var(--ouro); }
 .temas h2 { color: var(--text-claro); margin-block-end: var(--space-4); }
 .temas .apoio { color: var(--text-claro-suave); }
 .temas__grade { display: grid; gap: var(--space-7); }
 .temas__lista li {
   display: grid; grid-template-columns: auto 1fr; align-items: center; gap: var(--space-4);
   padding-block: var(--space-5);
-  border-top: 1px solid var(--fio-claro);
+  border-top: 1px solid var(--fio-ouro);
   font-size: 1.125rem; line-height: 1.5;
 }
-.temas__lista li:last-child { border-bottom: 1px solid var(--fio-claro); }
-.temas__lista .icone { color: var(--text-claro); }
+.temas__lista li:last-child { border-bottom: 1px solid var(--fio-ouro); }
+.temas__lista .icone { color: var(--ouro); }
 @media (min-width: 900px) {
   .temas { padding-block: var(--space-10); }
   .temas__grade { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-9); align-items: start; }
@@ -407,7 +413,7 @@ p { text-wrap: pretty; }
 .sobre__fundo { position: absolute; inset: 0; z-index: -2; }
 .sobre__fundo picture, .sobre__fundo img { width: 100%; height: 100%; object-fit: cover; }
 .sobre::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--carvao); opacity: 0.85; }
-.sobre .rotulo { color: var(--text-claro); }
+.sobre .rotulo { color: var(--ouro); }
 .sobre h2 { color: var(--text-claro); margin-block-end: var(--space-5); }
 .sobre__grade { display: grid; gap: var(--space-7); }
 .sobre__fotos { position: relative; width: min(100%, 420px); padding-block-end: var(--space-7); }
@@ -490,10 +496,12 @@ p { text-wrap: pretty; }
 .rodape__contato .botao { margin-block-start: var(--space-4); }
 .rodape .botao--claro { text-decoration: none; }
 .rodape .botao--claro:hover, .rodape .botao--claro:focus-visible { color: var(--carvao); }
+.rodape__titulo { color: var(--ouro); }
+.rodape .marca__profissao { color: var(--ouro); }
 .rodape__legal {
   display: grid; gap: var(--space-2); align-items: center;
   margin-block-start: var(--space-8); padding-block-start: var(--space-5);
-  border-top: 1px solid var(--fio-claro);
+  border-top: 1px solid var(--fio-ouro);
   font-size: 0.875rem;
 }
 .rodape__legal a { display: inline-flex; align-items: center; min-height: var(--toque-min); }
@@ -515,9 +523,9 @@ p { text-wrap: pretty; }
 /* Botão fixo de WhatsApp (celular): mesmo desenho dos botões, preenchido */
 .whatsapp-fixo {
   border-radius: var(--raio);
-  background: var(--accent); color: var(--linho);
+  background: var(--ouro-texto); color: var(--linho);
   font-family: var(--font-texto); font-size: 1rem; font-weight: 600; letter-spacing: 0.04em;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--ouro-texto);
 }
 .whatsapp-fixo .icone { width: var(--icone-linha); height: var(--icone-linha); }
 
