@@ -80,34 +80,46 @@ p { text-wrap: pretty; }
 .texto p, .apoio { max-width: 32em; }
 .identificacao { font-size: 0.875rem; line-height: 1.6; color: var(--text-suave); }
 
-/* Botões: um desenho só, raio 0. 15/10 (Armin): borda 1px na mesma cor do texto e do ícone, moldura menor (48px), texto igual */
+/* Botões (15/10, Armin): bloco carvão sem borda, texto linho, ícone do WhatsApp em dourado. Raio 0. 48px.
+   Hover: fundo dourado escuro, ícone linho. Sobre carvão (.botao--claro): inverte (fundo linho, texto carvão, ícone dourado). */
 .botao {
-  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3);
   min-height: 48px;
-  padding: var(--space-3) var(--space-5);
-  border: 1px solid var(--accent-texto);
+  padding: var(--space-3) var(--space-6);
+  border: 0;
   border-radius: var(--raio);
-  background: transparent;
-  color: var(--accent-texto);
+  background: var(--carvao);
+  color: var(--linho);
   font-family: var(--font-texto);
-  font-size: 1rem; font-weight: 600; line-height: 1.2; letter-spacing: 0.04em;
+  font-size: 0.9375rem; font-weight: 600; line-height: 1.2; letter-spacing: 0.06em;
   text-decoration: none; white-space: nowrap;
-  transition: background-color 0.15s linear, color 0.15s linear, border-color 0.15s linear;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
-.botao:hover, .botao:focus-visible { background: var(--ouro); color: var(--carvao); }
-.botao--claro { border-color: var(--ouro); color: var(--text-claro); }
+.botao .icone { color: var(--ouro); transition: color 0.2s ease; }
+.botao:hover, .botao:focus-visible { background: var(--ouro-texto); color: var(--linho); }
+.botao:hover .icone, .botao:focus-visible .icone { color: var(--linho); }
+.botao--claro { background: var(--linho); color: var(--carvao); }
+.botao--claro .icone { color: var(--ouro-texto); }
 .botao--claro:hover, .botao--claro:focus-visible { background: var(--ouro); color: var(--carvao); }
+.botao--claro:hover .icone, .botao--claro:focus-visible .icone { color: var(--carvao); }
 @media (max-width: 399px) {
   .botao { padding-inline: var(--space-5); white-space: normal; text-align: center; }
 }
 
-.link {
-  display: inline-flex; align-items: center; gap: var(--space-2);
+/* Link editorial (15/10, Armin): texto dourado escuro, fio dourado de 1px embaixo que cresce no hover */
+.link, .link-seta {
+  position: relative; display: inline-flex; align-items: center; gap: var(--space-2);
   min-height: var(--toque-min);
   color: var(--accent-texto);
-  font-weight: 600;
-  text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;
+  font-weight: 600; letter-spacing: 0.02em;
+  text-decoration: none;
 }
+.link::after, .link-seta::after {
+  content: ""; position: absolute; left: 0; bottom: var(--space-2); height: 1px; width: 100%;
+  background: var(--ouro); transform: scaleX(0.35); transform-origin: left; transition: transform 0.3s ease;
+}
+.link:hover::after, .link:focus-visible::after, .link-seta:hover::after, .link-seta:focus-visible::after { transform: scaleX(1); }
+.sobre .link::after { background: var(--ouro); }
 .link .icone, address .icone, summary .icone { width: var(--icone-linha); height: var(--icone-linha); }
 .acoes { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-5); }
 
@@ -149,7 +161,7 @@ p { text-wrap: pretty; }
 }
 @media (max-width: 899px) { .cabecalho__cta-extra { display: none; } }
 @media (max-width: 339px) { .cabecalho__cta .icone { display: none; } }
-@media (min-width: 900px) { .cabecalho__cta { min-height: 48px; padding: var(--space-3) var(--space-5); font-size: 1rem; letter-spacing: 0.04em; } }
+@media (min-width: 900px) { .cabecalho__cta { min-height: 44px; padding: var(--space-2) var(--space-5); font-size: 0.9375rem; letter-spacing: 0.06em; } }
 .cabecalho__menu {
   display: none; place-items: center; flex-shrink: 0;
   width: 48px; height: 48px; padding: 0;
@@ -232,11 +244,7 @@ p { text-wrap: pretty; }
 .heroi__fecho { margin-block-start: var(--space-8); }
 .heroi__fecho .divisoria { padding-block: 0; gap: var(--space-4); }
 .heroi__fecho .divisoria__fio { min-width: var(--space-6); }
-.link-seta {
-  display: inline-flex; align-items: center; gap: var(--space-2); min-height: 56px;
-  font-weight: 600; font-size: 1rem; letter-spacing: 0.02em; color: var(--accent-texto);
-  text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px;
-}
+.link-seta { min-height: 48px; font-size: 1rem; }
 .link-seta .icone { width: var(--icone-linha); height: var(--icone-linha); transition: transform 0.3s ease; }
 .link-seta:hover .icone, .link-seta:focus-visible .icone { transform: translateY(3px); }
 @media (min-width: 900px) {
@@ -523,11 +531,11 @@ p { text-wrap: pretty; }
 /* Botão fixo de WhatsApp (celular): mesmo desenho dos botões, preenchido */
 .whatsapp-fixo {
   border-radius: var(--raio);
-  background: var(--ouro-texto); color: var(--linho);
-  font-family: var(--font-texto); font-size: 1rem; font-weight: 600; letter-spacing: 0.04em;
-  border: 1px solid var(--ouro-texto);
+  background: var(--carvao); color: var(--linho);
+  font-family: var(--font-texto); font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.06em;
+  border: 0;
 }
-.whatsapp-fixo .icone { width: var(--icone-linha); height: var(--icone-linha); }
+.whatsapp-fixo .icone { width: var(--icone-linha); height: var(--icone-linha); color: var(--ouro); }
 
 /* Páginas internas (política, 404): o cabeçalho é absoluto, então o conteúdo desce a altura dele */
 .pagina { padding-top: calc(var(--header-h) + var(--space-8)); }
