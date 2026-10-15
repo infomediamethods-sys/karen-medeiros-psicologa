@@ -207,7 +207,7 @@ p { text-wrap: pretty; }
 .heroi__grade { display: grid; gap: var(--space-6); }
 .heroi h1 { margin-block-start: var(--space-3); }
 .heroi h1 .sublinhado svg { bottom: -0.08em; height: 0.28em; }
-.heroi__foto { position: relative; isolation: isolate; }
+.heroi__foto { position: relative; isolation: isolate; margin-block-start: var(--space-7); } /* celular: título mais longe do painel (Armin, 15/10) */
 .heroi__foto::before {
   content: ""; position: absolute; z-index: -2; background: var(--areia);
   top: calc(-1 * var(--space-5)); bottom: calc(-1 * var(--space-5)); left: var(--space-6); right: -50vw;
@@ -219,7 +219,7 @@ p { text-wrap: pretty; }
   border: 1px solid var(--accent);
 }
 .heroi__foto img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 30%; border-radius: var(--raio); }
-.heroi__base { margin-block-start: var(--space-3); }
+.heroi__base { margin-block-start: var(--space-5); }
 .heroi .apoio { margin-block-end: var(--space-5); font-size: 1rem; line-height: 1.7; }
 .heroi .link-seta { display: none; }
 .heroi__id { margin-block-start: calc(-1 * var(--space-2)); }
@@ -241,7 +241,7 @@ p { text-wrap: pretty; }
   }
   .heroi__topo { grid-area: topo; align-self: end; }
   .heroi__base { grid-area: base; align-self: start; max-width: 594px; margin-block-start: 0; }
-  .heroi__foto { grid-area: foto; align-self: stretch; display: grid; align-items: center; }
+  .heroi__foto { grid-area: foto; align-self: stretch; display: grid; align-items: center; margin-block-start: 0; }
   .heroi__foto::before {
     top: calc(-1 * var(--space-9)); bottom: calc(-1 * var(--space-6)); left: calc(-1 * var(--space-8)); right: -50vw;
   }
