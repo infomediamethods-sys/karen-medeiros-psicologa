@@ -200,27 +200,66 @@ p { text-wrap: pretty; }
 .menu-celular__pe { display: grid; justify-items: center; gap: var(--space-4); text-align: center; }
 @media (min-width: 900px) { .menu-celular { display: none; } }
 
-/* 1. Herói — posicionamento do herói da Marilúcia Valério (14/10, Armin):
-   celular: rótulo + título no alto, foto, texto, botão, CRP. Computador: texto à esquerda no container, foto à direita. */
-.heroi { padding-top: calc(var(--header-h) + var(--space-6)); padding-bottom: var(--space-8); }
+/* 1. Herói — posicionamento do herói da Marilúcia Valério, com composição editorial (15/10, Armin):
+   painel de areia sangrando à direita atrás do retrato, moldura bronze deslocada, CRP vertical ao lado da foto,
+   sublinhado à mão no "por quê.", segundo caminho "Como funciona" e divisória de fechamento. Tudo raio 0, sem sombra. */
+.heroi { padding-top: calc(var(--header-h) + var(--space-6)); padding-bottom: var(--space-8); overflow-x: clip; }
 .heroi__grade { display: grid; gap: var(--space-6); }
 .heroi h1 { margin-block-start: var(--space-3); }
-.heroi__foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 28%; border-radius: var(--raio); }
+.heroi h1 .sublinhado svg { bottom: -0.08em; height: 0.28em; }
+.heroi__foto { position: relative; isolation: isolate; }
+.heroi__foto::before {
+  content: ""; position: absolute; z-index: -2; background: var(--areia);
+  top: calc(-1 * var(--space-5)); bottom: calc(-1 * var(--space-5)); left: var(--space-6); right: -50vw;
+}
+.heroi__foto picture { position: relative; display: block; margin-inline-end: var(--space-4); }
+.heroi__foto picture::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  top: var(--space-4); left: var(--space-4); right: calc(-1 * var(--space-4)); bottom: calc(-1 * var(--space-4));
+  border: 1px solid var(--accent);
+}
+.heroi__foto img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 30%; border-radius: var(--raio); }
+.heroi__base { margin-block-start: var(--space-3); }
 .heroi .apoio { margin-block-end: var(--space-5); font-size: 1rem; line-height: 1.7; }
-.heroi .identificacao { margin-block-start: var(--space-4); }
+.heroi .link-seta { display: none; }
+.heroi__id { margin-block-start: calc(-1 * var(--space-2)); }
+.heroi__fecho { margin-block-start: var(--space-8); }
+.heroi__fecho .divisoria { padding-block: 0; gap: var(--space-4); }
+.heroi__fecho .divisoria__fio { min-width: var(--space-6); }
+.link-seta {
+  display: inline-flex; align-items: center; gap: var(--space-2); min-height: 56px;
+  font-weight: 600; font-size: 1rem; letter-spacing: 0.02em; color: var(--accent-texto);
+  text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px;
+}
+.link-seta .icone { width: var(--icone-linha); height: var(--icone-linha); transition: transform 0.3s ease; }
+.link-seta:hover .icone, .link-seta:focus-visible .icone { transform: translateY(3px); }
 @media (min-width: 900px) {
-  .heroi { padding-top: calc(var(--header-h) + var(--space-9)); padding-bottom: var(--space-9); }
+  .heroi { padding-top: calc(var(--header-h) + var(--space-9)); padding-bottom: var(--space-8); }
   .heroi__grade {
     grid-template-columns: 7fr 5fr; grid-template-areas: "topo foto" "base foto";
-    gap: var(--space-5) var(--space-8);
+    gap: var(--space-5) var(--space-9);
   }
   .heroi__topo { grid-area: topo; align-self: end; }
-  .heroi__base { grid-area: base; align-self: start; max-width: 594px; }
-  .heroi__foto { grid-area: foto; align-self: center; }
-  .heroi__foto picture { display: block; }
+  .heroi__base { grid-area: base; align-self: start; max-width: 594px; margin-block-start: 0; }
+  .heroi__foto { grid-area: foto; align-self: stretch; display: grid; align-items: center; }
+  .heroi__foto::before {
+    top: calc(-1 * var(--space-9)); bottom: calc(-1 * var(--space-6)); left: calc(-1 * var(--space-8)); right: -50vw;
+  }
+  .heroi__foto picture { margin-inline-end: var(--space-5); }
+  .heroi__foto picture::after { top: var(--space-5); left: var(--space-5); right: calc(-1 * var(--space-5)); bottom: calc(-1 * var(--space-5)); }
   .heroi__foto img { aspect-ratio: 5 / 6; object-position: 50% 22%; }
   .heroi h1 { margin-block-start: var(--space-4); }
   .heroi .apoio { margin-block-end: var(--space-6); font-size: var(--apoio); line-height: 1.75; }
+  .heroi .link-seta { display: inline-flex; }
+  /* CRP vertical na faixa de areia à esquerda do retrato (nome completo + CRP continuam no herói) */
+  .heroi__id {
+    grid-area: foto; align-self: stretch; justify-self: start; z-index: 1;
+    width: var(--space-8); margin: 0 0 0 calc(-1 * var(--space-8));
+    display: grid; place-items: center;
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.16em; white-space: nowrap; color: var(--accent-texto);
+  }
+  .heroi__fecho { margin-block-start: var(--space-9); }
 }
 
 /* Seções: padrão e junções de mesmo fundo (lição Ana Carolina) */
