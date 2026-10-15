@@ -7,7 +7,7 @@
   --carvao: #262720;
   /* 15/10 (Armin): três dourados no lugar do bronze único. --ouro é decorativo (fios, bordas, ícones; sem exigência AA);
      --ouro-titulo para títulos ≥24px (3:1 no linho 4,0 e na areia 3,3); --ouro-texto para texto pequeno (4,5:1: linho 5,9, areia 4,9). */
-  --ouro: #C9A24A;
+  --ouro: #AE8A30; /* 15/10 2ª: o #C9A24A ficou claro demais (Armin) */
   --ouro-titulo: #8F6E1F;
   --ouro-texto: #6F5614;
   --accent: var(--ouro);
@@ -17,7 +17,7 @@
   --text-claro: #EEEBE7;
   --text-claro-suave: #BDB8AE;
   --fio-claro: rgba(238, 235, 231, 0.25);
-  --fio-ouro: rgba(201, 162, 74, 0.55); /* fio dourado sobre carvão */
+  --fio-ouro: rgba(174, 138, 48, 0.6); /* fio dourado sobre carvão */
 
   --surface-1: var(--linho);
   --surface-2: var(--areia);
@@ -80,12 +80,12 @@ p { text-wrap: pretty; }
 .texto p, .apoio { max-width: 32em; }
 .identificacao { font-size: 0.875rem; line-height: 1.6; color: var(--text-suave); }
 
-/* Botões: um desenho só, raio 0, 56px (design.md §6) */
+/* Botões: um desenho só, raio 0. 15/10 (Armin): borda 1px na mesma cor do texto e do ícone, moldura menor (48px), texto igual */
 .botao {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
-  min-height: 56px;
-  padding: var(--space-4) var(--space-6);
-  border: 2px solid var(--accent);
+  min-height: 48px;
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--accent-texto);
   border-radius: var(--raio);
   background: transparent;
   color: var(--accent-texto);
@@ -128,7 +128,7 @@ p { text-wrap: pretty; }
 .cabecalho {
   position: absolute; inset-inline: 0; top: 0; z-index: 50;
   background: var(--linho);
-  border-bottom: 1px solid var(--accent);
+  border-bottom: 1px solid var(--ouro-texto);
   box-shadow: var(--sombra-header);
 }
 .cabecalho__barra {
@@ -149,7 +149,7 @@ p { text-wrap: pretty; }
 }
 @media (max-width: 899px) { .cabecalho__cta-extra { display: none; } }
 @media (max-width: 339px) { .cabecalho__cta .icone { display: none; } }
-@media (min-width: 900px) { .cabecalho__cta { min-height: 56px; padding: var(--space-4) var(--space-6); font-size: 1rem; letter-spacing: 0.04em; } }
+@media (min-width: 900px) { .cabecalho__cta { min-height: 48px; padding: var(--space-3) var(--space-5); font-size: 1rem; letter-spacing: 0.04em; } }
 .cabecalho__menu {
   display: none; place-items: center; flex-shrink: 0;
   width: 48px; height: 48px; padding: 0;
@@ -525,7 +525,7 @@ p { text-wrap: pretty; }
   border-radius: var(--raio);
   background: var(--ouro-texto); color: var(--linho);
   font-family: var(--font-texto); font-size: 1rem; font-weight: 600; letter-spacing: 0.04em;
-  border: 2px solid var(--ouro-texto);
+  border: 1px solid var(--ouro-texto);
 }
 .whatsapp-fixo .icone { width: var(--icone-linha); height: var(--icone-linha); }
 
