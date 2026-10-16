@@ -235,7 +235,7 @@ p { text-wrap: pretty; }
   top: var(--space-4); left: var(--space-4); right: calc(-1 * var(--space-4)); bottom: calc(-1 * var(--space-4));
   border: 1px solid var(--accent);
 }
-.heroi__foto img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 30%; border-radius: var(--raio); }
+.heroi__foto img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; border-radius: var(--raio); } /* 16/10 (Armin): vertical no celular, sem cortar a cabeça */
 .heroi__base { margin-block-start: var(--space-5); }
 .heroi .apoio { margin-block-end: var(--space-5); font-size: 1rem; line-height: 1.7; }
 .heroi .link-seta { display: none; }
