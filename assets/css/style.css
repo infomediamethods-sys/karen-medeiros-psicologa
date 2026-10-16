@@ -227,7 +227,7 @@ p { text-wrap: pretty; }
 .heroi__foto { position: relative; isolation: isolate; margin-block-start: var(--space-7); } /* celular: título mais longe do painel (Armin, 15/10) */
 .heroi__foto::before {
   content: ""; position: absolute; z-index: -2; background: var(--areia);
-  top: calc(-1 * var(--space-5)); bottom: calc(-1 * var(--space-5)); left: var(--space-6); right: -50vw;
+  top: calc(-1 * var(--space-5)); bottom: calc(-1 * var(--space-5)); left: var(--space-6); right: calc(-1 * var(--space-2)); /* 16/10 (Armin): não sangra mais até a borda */
 }
 .heroi__foto picture { position: relative; display: block; margin-inline-end: var(--space-4); }
 .heroi__foto picture::after {
@@ -256,7 +256,7 @@ p { text-wrap: pretty; }
   .heroi__base { grid-area: base; align-self: start; max-width: 594px; margin-block-start: 0; }
   .heroi__foto { grid-area: foto; align-self: stretch; display: grid; align-items: center; margin-block-start: 0; }
   .heroi__foto::before {
-    top: calc(-1 * var(--space-9)); bottom: calc(-1 * var(--space-6)); left: calc(-1 * var(--space-8)); right: -50vw;
+    top: calc(-1 * var(--space-9)); bottom: calc(-1 * var(--space-6)); left: calc(-1 * var(--space-8)); right: calc(-1 * var(--space-7));
   }
   .heroi__foto picture { margin-inline-end: var(--space-5); }
   .heroi__foto picture::after { top: var(--space-5); left: var(--space-5); right: calc(-1 * var(--space-5)); bottom: calc(-1 * var(--space-5)); }
