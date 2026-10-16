@@ -256,7 +256,7 @@ p { text-wrap: pretty; }
   .heroi__base { grid-area: base; align-self: start; max-width: 594px; margin-block-start: 0; }
   .heroi__foto { grid-area: foto; align-self: stretch; display: grid; align-items: center; margin-block-start: 0; }
   .heroi__foto::before {
-    top: calc(-1 * var(--space-9)); bottom: calc(-1 * var(--space-6)); left: calc(-1 * var(--space-8)); right: calc(-1 * var(--space-7));
+    top: calc(-1 * var(--space-9)); bottom: calc(-1 * var(--space-6)); left: calc(-1 * var(--space-8)); right: -50vw;
   }
   .heroi__foto picture { margin-inline-end: var(--space-5); }
   .heroi__foto picture::after { top: var(--space-5); left: var(--space-5); right: calc(-1 * var(--space-5)); bottom: calc(-1 * var(--space-5)); }
